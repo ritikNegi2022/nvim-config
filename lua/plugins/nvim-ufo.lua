@@ -1,0 +1,21 @@
+pack("kevinhwang91/nvim-ufo", "kevinhwang91/promise-async")
+
+require("ufo").setup({
+	-- treesitter not required
+	-- ufo uses the same query files for folding (queries/<lang>/folds.scm)
+	-- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`-
+	provider_selector = function(_, _, _)
+		return { "treesitter", "indent" }
+	end,
+	open_fold_hl_timeout = 0, -- Disable highlight timeout after opening
+})
+
+-- config for ufo
+vim.o.foldenable = true
+vim.o.foldcolumn = "0" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+
+-- keybind for fold (UFO)
+vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
+vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
