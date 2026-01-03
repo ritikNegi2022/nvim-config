@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 local map = vim.keymap.set
 
 -- map("n","<leader>e", ":Ex<CR>",{desc = "Open Explorer"})
-map("n", "<leader>o", "<CMD>update<CR> :source<CR>", { desc = "Update and source current file" })
+-- map("n", "<leader>o", "<CMD>update<CR> :source<CR>", { desc = "Update and source current file" })
 map("n", "<leader>w", "<CMD>write<CR>", { desc = "Save current buffer" })
 map("n", "<leader>q", "<CMD>quit<CR>", { desc = "Quit nvim" })
 map("n", "<Esc>", "<CMD>nohlsearch<CR>", { desc = "Clear search highlight" })
@@ -42,3 +42,5 @@ map("n", "<leader>pa", function()
 	vim.fn.setreg("+", path)
 	print("file:", path)
 end)
+
+vim.api.nvim_set_keymap("n", "<leader>c", ":bd<CR>", { noremap = true, silent = true, desc = "Close current buffer" })
