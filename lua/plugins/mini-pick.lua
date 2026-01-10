@@ -2,7 +2,14 @@ pack("nvim-mini/mini.pick")
 
 local mini_pick = require("mini.pick")
 
-mini_pick.setup()
+mini_pick.setup({
+	picker = {
+
+		-- Add folder names here to exclude
+		exclude = { ".git", "node_modules", "target" },
+		-- other picker options...
+	},
+})
 
 vim.keymap.set("n", "<leader>h", "<CMD>Pick help<CR>", { desc = "Help picker" })
 vim.keymap.set("n", "<leader>ff", "<CMD>Pick files<CR>", { desc = "File picker" })
