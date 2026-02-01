@@ -10,6 +10,9 @@ opt.cursorline = true -- Highlight current line
 opt.wrap = false -- Don't wrap lines
 opt.scrolloff = 10 -- Keep 10 lines above/below cursor
 opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
+opt.wrap = true
+opt.linebreak = true
+opt.breakindent = true
 
 -- Indentation
 opt.tabstop = 2 -- Tab width
@@ -61,7 +64,8 @@ opt.autochdir = false -- Don't auto change directory
 opt.iskeyword:append("-") -- Treat dash as part of word
 opt.path:append("**") -- include subdirectories in search
 opt.selection = "inclusive" -- Selection behavior
-opt.mouse = "a" -- Enable mouse support
+opt.mouse = "" -- Enable mouse support
+opt.mousescroll = "hor:0"
 opt.clipboard:append("unnamedplus") -- Use system clipboard
 opt.modifiable = true -- Allow buffer modifications
 opt.encoding = "UTF-8" -- Set encoding

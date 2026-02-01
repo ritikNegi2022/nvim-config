@@ -1,4 +1,5 @@
 -- terminal
+local vim = vim
 local terminal_state = {
 	buf = nil,
 	win = nil,
@@ -8,6 +9,7 @@ local terminal_state = {
 local function FloatingTerminal()
 	-- If terminal is already open, close it (toggle behavior)
 	if terminal_state.is_open and vim.api.nvim_win_is_valid(terminal_state.win) then
+		vim.opt.mouse = ""
 		vim.api.nvim_win_close(terminal_state.win, false)
 		terminal_state.is_open = false
 		return
@@ -57,7 +59,7 @@ local function FloatingTerminal()
 
 	terminal_state.is_open = true
 	vim.cmd("startinsert")
-
+	vim.opt.mouse = "a"
 	-- Set up auto-close on buffer leave
 	vim.api.nvim_create_autocmd("BufLeave", {
 		buffer = terminal_state.buf,
@@ -90,6 +92,7 @@ local bottom_term = {
 local function BottomTerminal()
 	-- Toggle close
 	if bottom_term.is_open and vim.api.nvim_win_is_valid(bottom_term.win) then
+		vim.opt.mouse = ""
 		vim.api.nvim_win_close(bottom_term.win, false)
 		bottom_term.is_open = false
 		return
@@ -128,6 +131,7 @@ local function BottomTerminal()
 
 	bottom_term.is_open = true
 	vim.cmd("startinsert")
+	vim.opt.mouse = "a"
 end
 
 vim.keymap.set("n", "<C-/>", BottomTerminal, {
